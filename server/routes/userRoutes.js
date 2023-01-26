@@ -10,8 +10,7 @@ router.post("/register", async (req, res) => {
   try {
     const userExist = await User.findOne({ email: req.body.email });
     if (userExist) {
-      return res
-        .status(200)
+      return res.status(200)
         .send({ message: "user already exists", success: false });
     }
     const password = req.body.password;
@@ -22,8 +21,7 @@ router.post("/register", async (req, res) => {
     const newuser = new User(req.body);
 
     await newuser.save();
-    res
-      .status(200)
+    res.status(200)
       .send({ message: "user created successfully", success: true });
   } catch (error) {
     console.log(error)
